@@ -1,25 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import ReadFile from "./components/ReadFile";
+import Output from "./components/output";
+import Route from "./components/Route";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [fileInfo, setFileInfo] = useState();
+
+
+
+    return (
+        <div className="App">
+            <Route  path={'/read-file'}>
+                <ReadFile setFileInfo={(val)=>setFileInfo(val)}/>
+            </Route>
+            <Route  path={'/output'}>
+                <Output fileInfo={fileInfo}/>
+            </Route>
+
+        </div>
+    );
 }
 
 export default App;
